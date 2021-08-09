@@ -4,7 +4,8 @@
   LCD1602 Plugin for Octoprint
 """
 
-from __future__ import absolute_import
+__plugin_pythoncompat__ = ">=2.7,<4"
+
 from octoprint.printer.estimation import PrintTimeEstimator
 import octoprint.plugin
 import octoprint.events
@@ -31,7 +32,7 @@ class LCD1602Plugin(octoprint.plugin.StartupPlugin,
       except:
         print('Cannot load fake_rpi !')
     else:
-      self.mylcd = CharLCD(i2c_expander='PCF8574', address=0x27, cols=16, rows=2, backlight_enabled=True, charmap='A00')
+      self.mylcd = CharLCD(i2c_expander='PCF8574', address=0x3f, port=1, cols=16, rows=2, backlight_enabled=True, charmap='A00')
       
       # create block for progress bar
       self.block = bytearray(b'\xFF\xFF\xFF\xFF\xFF\xFF\xFF')
